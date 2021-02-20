@@ -1,12 +1,21 @@
+/*
+ * @Description: Night
+ * @Date: 2021-02-02 15:27:28
+ * @LastEditTime: 2021-02-20 11:31:17
+ * @FilePath: \app\src\index.tsx
+ */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import { Provider } from "react-redux"
+import store from "./store/index"
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
