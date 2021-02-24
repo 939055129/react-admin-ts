@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-23 18:12:26
- * @LastEditTime: 2021-02-24 16:28:45
+ * @LastEditTime: 2021-02-24 16:45:53
  * @Version: 
  */
 import { Tag } from 'antd';
@@ -24,7 +24,7 @@ export default function NavBar() {
   return (
     <Wrap>
       {navItem.map((item: menu, index: number) => {
-        return <Tag closable onClose={(e) => preventDefault(e, item)} color={active == item.name ? "#2db7f5" : ''} key={item.name}><Link to={item.path}>{item.name}</Link></Tag>
+        return <Tag closable onClose={(e) => preventDefault(e, item)} color={active == item.name ? "#2db7f5" : ''} key={item.name}><Link to={item.completePath}>{item.name}</Link></Tag>
       })}
 
     </Wrap>
