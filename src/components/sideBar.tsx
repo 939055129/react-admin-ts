@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-19 14:37:01
- * @LastEditTime: 2021-02-24 16:42:34
+ * @LastEditTime: 2021-02-24 16:48:39
  * @Version: 
  */
 import { Menu } from 'antd';
@@ -30,7 +30,6 @@ export default function Nav(props: any) {
       Dispatch(changeNav(value.name))
     } else {
       value.completePath = path
-      console.log(value)
       Dispatch(addNav(value))
       Dispatch(changeNav(value.name))
     }
