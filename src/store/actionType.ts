@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-19 18:31:18
- * @LastEditTime: 2021-02-20 17:43:14
+ * @LastEditTime: 2021-02-24 15:43:53
  * @Version: 
  */
 export const ADD_NAV = 'ADD_NAV'
@@ -11,21 +11,21 @@ export interface Action {
   type: string,
   [propName: string]: any
 }
-export function addNav(prams: any): Action {
+export function addNav(pramas: any): Action {
   return {
     type: ADD_NAV,
-    prams
+    pramas
   }
 }
-export function removeNav(prams: any): Action {
+export function removeNav(pramas: any): Action {
   return {
     type: REMOVE_NAV,
-    prams
+    pramas
   }
 }
-export function changeNav(prams: any): Action {
+export function changeNav(pramas: any): Action {
   return {
     type: CHANGE_NAV,
-    prams
+    pramas
   }
 }

@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-02 16:06:57
- * @LastEditTime: 2021-02-23 15:28:55
+ * @LastEditTime: 2021-02-23 15:29:20
  * @Version: 
  */
 
@@ -9,6 +9,11 @@
 // import { decodeurl } from "@/utils/uitls"
 
 import styled from "styled-components"
+import Header from "@/components/header"
+import SideBar from "@/components/sideBar"
+import Content from "@/components/content"
+
+
 const Wrap = styled.div`
 width:100%;
 height:100%;
@@ -23,11 +28,15 @@ flex-direction:column;
   height:100%;
 }
 `
-export default function Home() {
+export default function Layout() {
 
   return (
     <Wrap>
-      主页
+      <Header />
+      <div className="content">
+        <SideBar />
+        <Content />
+      </div>
     </Wrap>
   )
 }
