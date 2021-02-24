@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-23 18:12:26
- * @LastEditTime: 2021-02-24 17:22:58
+ * @LastEditTime: 2021-02-24 18:03:28
  * @Version: 
  */
 import { Tag } from 'antd';
@@ -12,6 +12,7 @@ import { removeNav, changeNav } from "@/store/actionType"
 import styled from 'styled-components';
 const Wrap = styled.div`
 margin-top:5px;
+height:30px;
 `
 export default function NavBar() {
   const History = useHistory()
@@ -22,9 +23,8 @@ export default function NavBar() {
   function preventDefault(e: any, pramas: menu) {
     e.preventDefault();
     Dispatch(removeNav(pramas))
-    if (pramas.name == active) {
-      let length = navItem.length
-      if (pramas.name == navItem[0].name) {
+    if (pramas.name === active) {
+      if (pramas.name === navItem[0].name) {
         Dispatch(changeNav(navItem[1].name))
         History.push(navItem[1].name)
       } else {
@@ -40,7 +40,7 @@ export default function NavBar() {
   return (
     <Wrap>
       {navItem.map((item: menu, index: number) => {
-        return <Tag closable onClick={() => changePath(item)} onClose={(e) => preventDefault(e, item)} color={active == item.name ? "#2db7f5" : ''} key={item.name}><Link to={item.completePath}>{item.name}</Link></Tag>
+        return <Tag closable onClick={() => changePath(item)} onClose={(e) => preventDefault(e, item)} color={active === item.name ? "#2db7f5" : ''} key={item.name}><Link to={item.completePath}>{item.name}</Link></Tag>
       })}
 
     </Wrap>

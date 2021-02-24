@@ -1,16 +1,16 @@
 /*
  * @Description: Night
  * @Date: 2021-02-02 16:36:12
- * @LastEditTime: 2021-02-20 16:34:01
+ * @LastEditTime: 2021-02-24 17:41:11
  * @Version: 
  */
 
-import { normalRouter } from "./normalRouter"
+import normalRouter from "@/assets/navMenu"
 import { adminRouter } from "./adminRouter"
 export interface menu {
   path: string,
   name: string,
-  auth: string[],
+  auth?: string[],
   children?: menu[],
   [propName: string]: any;
 }

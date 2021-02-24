@@ -1,44 +1,64 @@
 /*
  * @Description: Night
  * @Date: 2021-02-19 15:07:55
- * @LastEditTime: 2021-02-24 16:26:25
+ * @LastEditTime: 2021-02-24 17:54:26
  * @Version: 
  */
-import { Tabs } from 'antd';
-import { useState } from 'react'
-import { connect } from 'react-redux'
+
+import { lazy, Suspense, } from 'react';
+import { Spin } from 'antd';
+import { Switch, Route, Redirect } from 'react-router-dom'
 import styled from "styled-components"
-import { removeNav } from "@/store/actionType"
 import { menu } from "@/router"
+import router from "@/router"
 import NavTip from "./navTip"
 import NavBar from "./navBar"
 const Wrap = styled.div`
 width:100%;
 margin:5px;
 `
+let renderMenu = (routers: menu[], lastPath: string = ""): any => {
+  return routers.map((item) => {
+    let path = lastPath + item.path
+    if (item.children) {
+      return renderMenu(item.children, item.path)
+    } else {
+      return <Route path={path} exact key={item.name} component={lazy(item.component)} />
+    }
+  })
+}
 export default function NavMenu(props: any) {
+  let isLogin = window.localStorage.getItem("isLogin")
   return (
     <Wrap>
       <NavTip />
       <NavBar />
-      {/* <Tabs
-        hideAdd
-        activeKey={active}
-        onChange={onChange}
-        type="editable-card"
-        onEdit={onEdit}
-        animated={true}
-        size="small"
-      >
-        <TabPane tab="主页" key="主页">
-          主页
-        </TabPane>
-        {navItem.map((pane: menu) => (
-          <TabPane tab={pane.name} key={pane.name}>
-            {pane.name}
-          </TabPane>
-        ))}
-      </Tabs> */}
+      <Suspense fallback={<Spin />}>
+        <Switch>
+          <Route path="/" exact strict>
+            {isLogin ? <Redirect to="/app" push /> : <Redirect to="/login" push />}
+          </Route>
+          {/* 不需要登录页面 */}
+          {router.noLogin.map((item, index) => {
+            return <Route path={item.path} exact key={item.name} component={lazy(item.components)} />
+          })}
+          {/* 普通页面 */}
+          {renderMenu(router.normalRouter)}
+          {/* 管理员页面 */}
+          {router.adminRouter.map((item, index) => {
+            if (isLogin) {
+              return <Route path={item.path} exact key={item.name} component={lazy(item.components)} />
+            } else {
+              return <Route path={item.path} exact key={item.name} >
+                <Redirect to="/login" push />
+              </Route>
+            }
+          })}
+          <Route path="*" >
+            <Redirect to="/error/404" push />
+          </Route>
+        </Switch>
+      </Suspense>
     </Wrap>
   )
 }

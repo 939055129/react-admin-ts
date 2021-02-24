@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-02 16:06:57
- * @LastEditTime: 2021-02-23 15:28:55
+ * @LastEditTime: 2021-02-24 18:06:00
  * @Version: 
  */
 
@@ -27,7 +27,7 @@ export default function Home() {
 
   return (
     <Wrap>
-      主页
+      首页
     </Wrap>
   )
 }

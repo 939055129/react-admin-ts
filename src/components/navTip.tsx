@@ -1,14 +1,13 @@
 /*
  * @Description: Night
  * @Date: 2021-02-23 15:31:17
- * @LastEditTime: 2021-02-24 16:29:43
+ * @LastEditTime: 2021-02-24 17:53:48
  * @Version: 
  */
 import { Breadcrumb } from 'antd';
 import { Link, useLocation } from "react-router-dom"
 import routers from "@/assets/navMenu"
 import { menu } from "@/utils/interface"
-import { useEffect } from "react"
 export default function NavTip() {
   let loction = useLocation().pathname.split("?")
   let pathname = loction[0].split("/")
@@ -16,7 +15,7 @@ export default function NavTip() {
   let BreadcrumbItems: menu[] = []
   const getTip = (router: menu[], item: number, lastPath: string = "") => {
     router.forEach((value) => {
-      if (value.path == "/" + pathname[item]) {
+      if (value.path === "/" + pathname[item]) {
         let path = lastPath + value.path
         BreadcrumbItems.push({
           path: path,

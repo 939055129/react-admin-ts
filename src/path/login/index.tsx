@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-04 16:15:28
- * @LastEditTime: 2021-02-19 18:32:38
+ * @LastEditTime: 2021-02-24 18:13:35
  * @Version: 
  */
 
@@ -10,13 +10,13 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 import { encodeurl } from "@/utils/uitls"
-const Login = styled.div`
+const Wrap = styled.div`
 .login-form{
   margin:0 auto;
   width:300px;
 }
 `
-export default function Register() {
+export default function Login() {
   const History = useHistory()
   const onFinish = (values: any) => {
     let query = encodeurl({
@@ -33,7 +33,7 @@ export default function Register() {
     console.log('Received values of form: ', values);
   };
   return (
-    <Login >
+    <Wrap >
       <Form
         name="normal_login"
         className="login-form"
@@ -72,6 +72,6 @@ export default function Register() {
       </Button>
         </Form.Item>
       </Form>
-    </Login>
+    </Wrap>
   )
 }

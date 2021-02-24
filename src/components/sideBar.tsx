@@ -1,12 +1,12 @@
 /*
  * @Description: Night
  * @Date: 2021-02-19 14:37:01
- * @LastEditTime: 2021-02-24 16:48:39
+ * @LastEditTime: 2021-02-24 17:54:08
  * @Version: 
  */
 import { Menu } from 'antd';
 import { menu, store } from "@/utils/interface"
-import { useState } from 'react'
+
 import { useSelector, useDispatch } from 'react-redux'
 import { addNav, changeNav } from "@/store/actionType"
 import router from "@/assets/navMenu"
@@ -14,7 +14,7 @@ import { useHistory } from "react-router-dom"
 const { SubMenu } = Menu;
 let test = router
 export default function Nav(props: any) {
-  const [collapsed, setCollapsed] = useState(false)
+
   const navItem: menu[] = useSelector((state: store) => state.navItem)
   const History = useHistory()
   const Dispatch = useDispatch()
@@ -53,7 +53,7 @@ export default function Nav(props: any) {
     <Menu
       mode="vertical"
       theme="light"
-      inlineCollapsed={collapsed}
+
       className="menu"
       triggerSubMenuAction="click"
     >
