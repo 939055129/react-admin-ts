@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-04 16:15:28
- * @LastEditTime: 2021-02-24 18:13:35
+ * @LastEditTime: 2021-02-25 15:02:27
  * @Version: 
  */
 
@@ -9,7 +9,7 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
-import { encodeurl } from "@/utils/uitls"
+import { encodePrams } from "@/utils/uitls"
 const Wrap = styled.div`
 .login-form{
   margin:0 auto;
@@ -19,9 +19,9 @@ const Wrap = styled.div`
 export default function Login() {
   const History = useHistory()
   const onFinish = (values: any) => {
-    let query = encodeurl({
+    let query = encodePrams({
       test: 132,
-      name: "刘洪宇"
+      name: "TEST"
     })
     console.log(query)
     window.localStorage.setItem("isLogin", "true")

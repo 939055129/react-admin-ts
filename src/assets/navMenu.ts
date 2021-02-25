@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-22 11:23:03
- * @LastEditTime: 2021-02-24 18:31:20
+ * @LastEditTime: 2021-02-25 14:44:39
  * @Version: 
  */
 
@@ -83,79 +83,79 @@ const menus: menu[] = [
         name: "markdown",
         path: "/markdown",
         icon: "",
-        component: () => import("@/path/home"),
+        component: () => import("@/path/components/markdown"),
       },
       {
         name: "JSON编辑器",
         path: "/json-editor",
         icon: "",
-        component: () => import("@/path/home"),
+        component: () => import("@/path/components/json-editor"),
       },
       {
         name: "split-pane",
         path: "/split-pane",
         icon: "",
-        component: () => import("@/path/home"),
+        component: () => import("@/path/components/split-pane"),
       },
       {
         name: "头像上传",
         path: "/avatar-upload",
         icon: "",
-        component: () => import("@/path/home"),
+        component: () => import("@/path/components/avatar-upload"),
       },
       {
         name: "dropzone",
         path: "/dropzone",
         icon: "",
-        component: () => import("@/path/home"),
+        component: () => import("@/path/components/dropzone"),
       },
       {
         name: "sticky",
         path: "/sticky",
         icon: "",
-        component: () => import("@/path/home"),
+        component: () => import("@/path/components/sticky"),
       },
       {
         name: "count-to",
         path: "/count-to",
         icon: "",
-        component: () => import("@/path/home"),
+        component: () => import("@/path/components/count-to"),
       },
       {
         name: "小组件",
         path: "/mixin",
         icon: "",
-        component: () => import("@/path/home"),
+        component: () => import("@/path/components/mixin"),
       },
       {
         name: "返回顶部",
         path: "/back-to-top",
         icon: "",
-        component: () => import("@/path/home"),
+        component: () => import("@/path/components/back-to-top"),
       },
       {
         name: "拖拽dialog",
         path: "/drag-dialog",
         icon: "",
-        component: () => import("@/path/home"),
+        component: () => import("@/path/components/drag-dialog"),
       },
       {
         name: "拖拽select",
         path: "/drag-select",
         icon: "",
-        component: () => import("@/path/home"),
+        component: () => import("@/path/components/markdown"),
       },
       {
         name: "列表拖拽",
         path: "/dnd-list",
         icon: "",
-        component: () => import("@/path/home"),
+        component: () => import("@/path/components/dnd-list"),
       },
       {
         name: "可拖拽看板",
         path: "/drag-kanban",
         icon: "",
-        component: () => import("@/path/home"),
+        component: () => import("@/path/components/drag-kanban"),
       },
     ]
   },

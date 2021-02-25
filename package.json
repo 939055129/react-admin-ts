@@ -25,6 +25,7 @@
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {
+    "@types/nprogress": "^0.2.0",
     "@types/react-redux": "^7.1.16",
     "@types/react-router-dom": "^5.1.7",
     "@types/styled-components": "^5.1.7",

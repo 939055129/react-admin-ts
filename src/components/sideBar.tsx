@@ -1,24 +1,26 @@
 /*
  * @Description: Night
  * @Date: 2021-02-19 14:37:01
- * @LastEditTime: 2021-02-24 17:54:08
+ * @LastEditTime: 2021-02-25 15:08:52
  * @Version: 
  */
 import { Menu } from 'antd';
 import { menu, store } from "@/utils/interface"
-
 import { useSelector, useDispatch } from 'react-redux'
 import { addNav, changeNav } from "@/store/actionType"
 import router from "@/assets/navMenu"
 import { useHistory } from "react-router-dom"
+import styled from 'styled-components';
+const Wrap = styled.div`
+height:100%;
+width:100%;
+overflow-y:scroll;
+`
 const { SubMenu } = Menu;
-let test = router
 export default function Nav(props: any) {
-
   const navItem: menu[] = useSelector((state: store) => state.navItem)
   const History = useHistory()
   const Dispatch = useDispatch()
-
   let addNavItem = (value: menu, path: string) => {
     /**
   * @description: 判断是否存在如果存在便不添加menuItem
@@ -29,9 +31,10 @@ export default function Nav(props: any) {
     if (navItem.some((item: menu) => { return item.name === value.name })) {
       Dispatch(changeNav(value.name))
     } else {
-      value.completePath = path
-      Dispatch(addNav(value))
-      Dispatch(changeNav(value.name))
+      let menuItem = JSON.parse(JSON.stringify(value))
+      menuItem.path = path
+      Dispatch(addNav(menuItem))
+      Dispatch(changeNav(menuItem.name))
     }
     History.push(path)
   }
@@ -50,29 +53,15 @@ export default function Nav(props: any) {
     })
   }
   return (
-    <Menu
-      mode="vertical"
-      theme="light"
-
-      className="menu"
-      triggerSubMenuAction="click"
-    >
-      {renderMenu(test)}
-    </Menu>
+    <Wrap >
+      <Menu
+        mode="inline"
+        theme="light"
+        className="menu"
+        triggerSubMenuAction="click"
+      >
+        {renderMenu(router)}
+      </Menu>
+    </Wrap>
   )
 }
-// const mapStateToProps = (state: store) => {
-//   return {
-//     navItem: state.navItem,
-//     active: state.active
-//   }
-// }
-// const mapDispatchToProps = (dispatch: Function) => {
-//   return {
-//     addNav: (item: menu) => {
-//       dispatch(addNav(item));
-//     },
-//     changeNav: (item: string) => { dispatch(changeNav(item)); }
-//   }
-// }
-// export default connect(mapStateToProps, mapDispatchToProps)(Nav)

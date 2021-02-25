@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-02 16:06:57
- * @LastEditTime: 2021-02-23 15:29:20
+ * @LastEditTime: 2021-02-25 15:20:56
  * @Version: 
  */
 
@@ -12,7 +12,7 @@ import styled from "styled-components"
 import Header from "@/components/header"
 import SideBar from "@/components/sideBar"
 import Content from "@/components/content"
-
+import { Row, Col } from 'antd';
 
 const Wrap = styled.div`
 width:100%;
@@ -20,13 +20,20 @@ height:100%;
 display:flex;
 flex-direction:column;
 .content{
+  box-sizing:border-box;
+  height:0;
+  flex:1;
   display:flex;
   width:100%;
+  .ant-row{
+    width:100%;
+    height:100%
+  }
+  .ant-col{
+    height:100%;
+  }
 }
-.menu{
-  width:250px;
-  height:100%;
-}
+
 `
 export default function Layout() {
 
@@ -34,8 +41,10 @@ export default function Layout() {
     <Wrap>
       <Header />
       <div className="content">
-        <SideBar />
-        <Content />
+        <Row>
+          <Col span={3}>  <SideBar /></Col>
+          <Col span={21}>  <Content /></Col>
+        </Row>
       </div>
     </Wrap>
   )

@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-03 11:02:22
- * @LastEditTime: 2021-02-19 15:21:32
+ * @LastEditTime: 2021-02-25 16:00:27
  * @Version: 
  */
 import backImg from "../assets/img/header.jpg"
@@ -45,10 +45,10 @@ export default function Header() {
       </div>
       <div className="Avatar">
         <Popover content={(<Link to={`/login?id=${12}`}>退出登录</Link>)}>
-          <Link to={`/login?id=${12}`}> <Avatar
+          <Avatar
             size="large"
             src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-          /></Link>
+          />
         </Popover>
         <Link to={`/login?id=${12}`}>MRliu</Link>
       </div>
