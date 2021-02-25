@@ -1,13 +1,13 @@
 /*
  * @Description: Night
  * @Date: 2021-02-23 15:31:17
- * @LastEditTime: 2021-02-25 15:38:08
+ * @LastEditTime: 2021-02-25 17:03:27
  * @Version: 
  */
 import { Breadcrumb } from 'antd';
 import { Link, useLocation } from "react-router-dom"
-import routers from "@/assets/navMenu"
-import { menu } from "@/utils/interface"
+import { router } from "@/utils/interface"
+import routers from "@/router"
 import styled from 'styled-components';
 const Wrap = styled.div`
 box-sizing:border-box;
@@ -22,8 +22,8 @@ export default function NavTip() {
   let loction = useLocation().pathname.split("?")
   let pathname = loction[0].split("/")
   pathname.shift()
-  let BreadcrumbItems: menu[] = []
-  const getTip = (router: menu[], item: number, lastPath: string = "") => {
+  let BreadcrumbItems: router[] = []
+  const getTip = (router: router[], item: number, lastPath: string = "") => {
     router.forEach((value) => {
       if (value.path === "/" + pathname[item]) {
         let path = lastPath + value.path
@@ -42,7 +42,8 @@ export default function NavTip() {
       }
     })
   }
-  getTip(routers, 0)
+  getTip(routers.normalRouter, 0)
+  getTip(routers.adminRouter, 0)
   return (
     <Wrap>
       <Breadcrumb>

@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-19 15:07:55
- * @LastEditTime: 2021-02-25 15:56:40
+ * @LastEditTime: 2021-02-25 17:39:19
  * @Version: 
  */
 
@@ -10,8 +10,8 @@ import { Spin } from 'antd';
 import { Switch, Redirect } from 'react-router-dom'
 import NpRoute from "./npRoute"
 import styled from "styled-components"
-import { menu } from "@/router"
-import router from "@/router"
+import { router } from "@/utils/interface"
+import routers from "@/router"
 import NavTip from "./navTip"
 import NavBar from "./navBar"
 const Wrap = styled.div`
@@ -26,7 +26,7 @@ height:100%;
  background-color:#f0f0f0;
 }
 `
-let renderMenu = (routers: menu[], lastPath: string = ""): any => {
+let renderMenu = (routers: router[], lastPath: string = ""): any => {
   return routers.map((item) => {
     let path = lastPath + item.path
     if (item.children) {
@@ -49,11 +49,11 @@ export default function NavMenu(props: any) {
               {isLogin ? <Redirect to="/app" push /> : <Redirect to="/login" push />}
             </NpRoute>
             {/* 普通页面 */}
-            {renderMenu(router.normalRouter)}
+            {renderMenu(routers.normalRouter)}
             {/* 管理员页面 */}
-            {router.adminRouter.map((item, index) => {
+            {routers.adminRouter.map((item, index) => {
               if (isLogin) {
-                return <NpRoute path={item.path} exact key={item.name} component={lazy(item.components)} />
+                return <NpRoute path={item.path} exact key={item.name} component={lazy(item.component)} />
               } else {
                 return <NpRoute path={item.path} exact key={item.name} >
                   <Redirect to="/login" push />

@@ -1,13 +1,13 @@
 /*
  * @Description: Night
  * @Date: 2021-02-23 18:12:26
- * @LastEditTime: 2021-02-25 15:55:52
+ * @LastEditTime: 2021-02-25 17:39:31
  * @Version: 
  */
 import { Tag } from 'antd';
 import { Link, useHistory } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
-import { store, menu } from "@/utils/interface"
+import { store, router } from "@/utils/interface"
 import { removeNav, changeNav } from "@/store/actionType"
 import styled from 'styled-components';
 const Wrap = styled.div`
@@ -23,9 +23,16 @@ box-shadow:0px 1px 2px #c0bebe;
 export default function NavBar() {
   const History = useHistory()
   const active: any = useSelector((state: store) => state.active)
-  const navItem: menu[] = useSelector((state: store) => state.navItem)
+  const navItem: router[] = useSelector((state: store) => state.navItem)
   const Dispatch = useDispatch()
-  function preventDefault(e: any, pramas: menu) {
+  /**
+   * @description: 关闭tag标签
+   * @event: 
+   * @param {any} e
+   * @param {router} pramas
+   * @return {*}
+   */
+  function preventDefault(e: any, pramas: router) {
     e.preventDefault();
     Dispatch(removeNav(pramas))
     if (pramas.name === active) {
@@ -38,15 +45,16 @@ export default function NavBar() {
       }
     }
   }
-  function changePath(pramas: menu) {
+  
+  function changePath(pramas: router) {
     Dispatch(changeNav(pramas.name))
   }
   function yWheel(e: any) {
     e.currentTarget.scrollLeft += e.deltaY;
   }
   return (
-    <Wrap onWheel={yWheel} style={{ display: navItem.length == 0 ? "none" : "block" }}>
-      {navItem.map((item: menu, index: number) => {
+    <Wrap onWheel={yWheel} style={{ display: navItem.length === 0 ? "none" : "block" }}>
+      {navItem.map((item: router, index: number) => {
         return <Tag closable onClick={() => changePath(item)}
           onClose={(e) => preventDefault(e, item)} color={active === item.name ? "#2db7f5" : ''} key={item.name}>
           <Link to={item.path}>{item.name}</Link>

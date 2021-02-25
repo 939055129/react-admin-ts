@@ -1,12 +1,13 @@
 /*
  * @Description: Night
  * @Date: 2021-02-02 16:36:12
- * @LastEditTime: 2021-02-24 17:41:11
+ * @LastEditTime: 2021-02-25 16:52:40
  * @Version: 
  */
 
-import normalRouter from "@/assets/navMenu"
+import normalRouter from "./normalRouter"
 import { adminRouter } from "./adminRouter"
+import { router } from "@/utils/interface"
 export interface menu {
   path: string,
   name: string,
@@ -15,7 +16,7 @@ export interface menu {
   [propName: string]: any;
 }
 //不需要登陆
-let noLogin: menu[] = [
+let noLogin: router[] = [
   {
     path: "/login",
     name: "login",
@@ -29,9 +30,9 @@ let noLogin: menu[] = [
     components: () => import('@/path/register'),
   }
 ]
-const router = {
+const routers = {
   normalRouter,
   adminRouter,
   noLogin
 }
-export default router 
+export default routers
