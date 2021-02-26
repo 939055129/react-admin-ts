@@ -1,124 +1,74 @@
 /*
  * @Description: Night
  * @Date: 2021-02-02 16:06:57
- * @LastEditTime: 2021-02-25 18:35:23
+ * @LastEditTime: 2021-02-26 18:13:30
  * @Version: 
  */
 
 // import { useLocation } from 'react-router-dom'
 // import { decodeurl } from "@/utils/uitls"
-
-import styled from "styled-components"
-import ReactECharts from 'echarts-for-react';
 import DisplayIcon from "./components/displayIcon"
+import { useState, useEffect } from "react"
 import {
   HomeOutlined,
-  MessageOutlined ,
+  MessageOutlined,
   MoneyCollectOutlined,
-  PayCircleOutlined ,
+  PayCircleOutlined,
 } from '@ant-design/icons';
-const Wrap = styled.div`
-width:100%;
-height:100%;
-
-display:flex;
-flex-direction:column;
-.top{
-  display:flex;
-
-}
-`
-const text = (text: string, color: string = "#b1b1b1") => {
-  return (<div style={{ color: color }}>{text}</div>)
-}
-const number = (text: number | string, color: string = "#616161") => {
-  return (<div style={{ color: color }}>{text}</div>)
-}
+import LineEchart from "./components/lineEchart"
+import BarEchart from "./components/barEchart"
+import PieEchart from "./components/pieEchart"
+import RadarEchart from "./components/radarEchart"
+import Wrap from "./homeCSS"
 export default function Home() {
-  const option = {
-    title: {
-      text: '未来一周气温变化',
+  const [itemList, setItemList] = useState([
+    {
+      icon: HomeOutlined,
+      text: "访问量",
+      number: 6,
+      Color: "rgb(64,201,198)"
     },
-    tooltip: {
-      trigger: 'axis'
+    {
+      icon: MessageOutlined,
+      text: "消息",
+      number: 6,
+      Color: "rgb(54,163,247)"
     },
-    legend: {
-      data: ['最高气温', '最低气温']
+    {
+      icon: MoneyCollectOutlined,
+      text: "总收入",
+      number: 6,
+      Color: "rgb(244,81,108)"
     },
-    toolbox: {
-      show: true,
-      feature: {
-        magicType: { type: ['line', 'bar'] }
-      }
+    {
+      icon: PayCircleOutlined,
+      text: "总支出",
+      number: 6,
+      Color: "rgb(52,192,163)"
     },
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-    },
-    yAxis: {
-      type: 'value',
-      axisLabel: {
-        formatter: '{value} °C'
-      }
-    },
-    series: [
-      {
-        name: '最高气温',
-        type: 'line',
-        data: [10, 11, 13, 11, 12, 12, 9],
-        markPoint: {
-          data: [
-            { type: 'max', name: '最大值' },
-            { type: 'min', name: '最小值' }
-          ]
-        },
-        markLine: {
-          data: [
-            { type: 'average', name: '平均值' }
-          ]
-        }
-      },
-      {
-        name: '最低气温',
-        type: 'line',
-        data: [1, -2, 2, 5, 3, 2, 0],
-        markPoint: {
-          data: [
-            { name: '周最低', value: -2, xAxis: 1, yAxis: -1.5 }
-          ]
-        },
-        markLine: {
-          data: [
-            { type: 'average', name: '平均值' },
-            [{
-              symbol: 'none',
-              x: '90%',
-              yAxis: 'max'
-            }, {
-              symbol: 'circle',
-              label: {
-                position: 'start',
-                formatter: '最大值'
-              },
-              type: 'max',
-              name: '最高点'
-            }]
-          ]
-        }
-      }
-    ]
-  };
+  ])
+  useEffect(() => {
+    console.log(123)
+  })
   return (
     <Wrap>
       <div className="top">
-        <DisplayIcon number={number(4654)} text={text("访问人数",)} Icon={<HomeOutlined style={{ fontSize: 26 }} />} />
-        <DisplayIcon number={number(4654)} text={text("消息")} Icon={<MessageOutlined style={{ fontSize: 26 }} />} />
-        <DisplayIcon number={number(4654)} text={text("总收入")} Icon={<MoneyCollectOutlined style={{ fontSize: 26 }} />} />
-        <DisplayIcon number={number(4654)} text={text("总支出")} Icon={<PayCircleOutlined style={{ fontSize: 26 }} />} />
+        {itemList.map((item, index) => {
+          return <DisplayIcon Icon={item.icon} key={index} Color={item.Color}>
+            <div style={{ textAlign: "center" }} >
+              <div style={{ color: "#b4b0b0" }}>{item.text}</div>
+              <div style={{ color: "#575757" }}>{item.number}</div>
+            </div>
+          </DisplayIcon>
+        })
+        }
       </div>
-      <ReactECharts option={option}></ReactECharts>
-      <div></div>
+      <div className="my-echart"><LineEchart /></div>
+      <div className="center">
+        <div className="item"><RadarEchart /></div>
+        <div className="item"><PieEchart /></div>
+        <div className="item"><BarEchart /></div>
+      </div>
       <div></div>
     </Wrap>
   )
