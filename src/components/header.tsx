@@ -1,15 +1,16 @@
 /*
  * @Description: Night
  * @Date: 2021-02-03 11:02:22
- * @LastEditTime: 2021-03-12 15:50:38
+ * @LastEditTime: 2021-03-12 18:23:20
  * @Version: 
  */
 import backImg from "../assets/img/header.jpg"
 import logo from "../logo.svg"
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { Popover } from 'antd';
 import { Avatar, } from 'antd';
+import { clearNav } from "@/store/actionType"
 const Wrap = styled.div`
 box-sizing:border-box;
 background-image:url(${backImg});
@@ -37,21 +38,27 @@ a{
 }
 `
 export default function Header() {
+  const History = useHistory()
+  const goOut = () => {
 
+    History.push({
+      pathname: "/login"
+    })
+  }
   return (
     <Wrap>
       <div>
         <img src={logo} style={{ width: 100 }} alt="logo"></img>
       </div>
       <div className="Avatar">
-        <Popover content={(<Link to={`/login?id=${12}`}>退出登录</Link>)}>
+        <Popover content={(<a onClick={goOut}>退出登录</a>)}>
           <Avatar
             size="large"
             src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
           />
         </Popover>
-        <Link to={`/login?id=${12}`}>MRliu</Link>
+        MRliu
       </div>
     </Wrap>
   )
-} 
+}
