@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-03 11:02:22
- * @LastEditTime: 2021-02-25 16:00:27
+ * @LastEditTime: 2021-03-12 15:50:38
  * @Version: 
  */
 import backImg from "../assets/img/header.jpg"
@@ -19,7 +19,7 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 width:100%;
-height:90px;
+height:60px;
 color:white;
 min-width:1280px;
 padding:0 36px;

@@ -1,11 +1,10 @@
 /*
  * @Description: Night
  * @Date: 2021-02-03 16:34:07
- * @LastEditTime: 2021-02-26 16:14:27
+ * @LastEditTime: 2021-03-01 17:39:45
  * @Version: 
  */
 
-import { FC, useEffect } from 'react'
 import Wrap from './components/wrap'
 const Page = (props: any) => {
   const { name, age } = props

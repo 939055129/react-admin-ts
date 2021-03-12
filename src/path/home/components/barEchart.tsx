@@ -4,7 +4,7 @@
  * @LastEditTime: 2021-02-26 18:16:52
  * @Version: 
  */
-import ReactECharts from 'echarts-for-react';
+import MyEchart from "@/components/myEchart"
 export default function BarEchart() {
   const option = {
     backgroundColor: "#fff",
@@ -37,6 +37,7 @@ export default function BarEchart() {
         }
       }
     ],
+    
     yAxis: [
       {
         type: 'value',
@@ -79,6 +80,6 @@ export default function BarEchart() {
     ]
   };
   return (
-    <ReactECharts option={option} />
+    <MyEchart options={option} id="BarEchart"/>
   )
 }

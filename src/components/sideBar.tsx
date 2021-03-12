@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-19 14:37:01
- * @LastEditTime: 2021-02-25 17:05:48
+ * @LastEditTime: 2021-03-12 18:00:48
  * @Version: 
  */
 import { Menu } from 'antd';
@@ -11,24 +11,30 @@ import { addNav, changeNav } from "@/store/actionType"
 import routers from "@/router"
 import { useHistory } from "react-router-dom"
 import styled from 'styled-components';
+import { getSession } from "@/utils/uitls"
 const Wrap = styled.div`
 height:100%;
 width:100%;
 overflow-y:scroll;
 `
 const { SubMenu } = Menu;
+type menu = Pick<router, "name" | "path">
 export default function Nav(props: any) {
-  const navItem: router[] = useSelector((state: store) => state.navItem)
+  const navItem: menu[] = useSelector((state: store) => state.navItem)
   const History = useHistory()
   const Dispatch = useDispatch()
-  let addNavItem = (value: router, path: string) => {
+  let userInfo: {
+    isLogin: boolean,
+    auth: [],
+  } = JSON.parse(getSession("userInfo"))
+  let addNavItem = (value: menu, path: string) => {
     /**
   * @description: 判断是否存在如果存在便不添加menuItem
   * @event: 
   * @param {*} navItem
   * @return {*}
   */
-    if (navItem.some((item: router) => { return item.name === value.name })) {
+    if (navItem.some((item: menu) => { return item.name === value.name })) {
       Dispatch(changeNav(value.name))
     } else {
       let menuItem = JSON.parse(JSON.stringify(value))
@@ -60,7 +66,7 @@ export default function Nav(props: any) {
         className="menu"
         triggerSubMenuAction="click"
       >
-        {renderMenu(routers.adminRouter)}
+        {userInfo.auth.some(value => value === "admin") ? renderMenu(routers.adminRouter) : ''}
         {renderMenu(routers.normalRouter)}
       </Menu>
     </Wrap>

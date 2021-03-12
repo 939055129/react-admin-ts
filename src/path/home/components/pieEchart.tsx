@@ -1,75 +1,49 @@
 /*
  * @Description: Night
  * @Date: 2021-02-26 18:00:40
- * @LastEditTime: 2021-02-26 18:18:55
+ * @LastEditTime: 2021-03-12 15:53:07
  * @Version: 
  */
-import ReactECharts from 'echarts-for-react';
-export default function BarEchart() {
-  const option = {
-    backgroundColor: "#fff",
-
-    title: {
-      text: 'Customized Pie',
-      left: 'center',
-      top: 20,
-      textStyle: {
-        color: '#3aa5d6'
-      }
-    },
-
-    tooltip: {
-      trigger: 'item'
-    },
-
-    visualMap: {
-      show: false,
-      min: 80,
-      max: 600,
-      inRange: {
-        colorLightness: [0, 1]
-      }
-    },
-    series: [
-      {
-        name: '访问来源',
-        type: 'pie',
-        radius: '55%',
-        center: ['50%', '50%'],
-        data: [
-          { value: 335, name: '直接访问' },
-          { value: 310, name: '邮件营销' },
-          { value: 274, name: '联盟广告' },
-          { value: 235, name: '视频广告' },
-          { value: 400, name: '搜索引擎' }
-        ].sort(function (a, b) { return a.value - b.value; }),
-        roseType: 'radius',
-        label: {
-          color: ['rgb(59, 179, 235 )','rgb(59, 129, 235 )','rgb(19, 129, 135 )']
+import MyEchart from "@/components/myEchart"
+export default function PieEchart() {
+    const option = {
+        backgroundColor: "#fff",
+        legend: {
+            top: 'bottom'
         },
-        labelLine: {
-          lineStyle: {
-            color: 'rgb(58, 136, 238)'
-          },
-          smooth: 0.2,
-          length: 10,
-          length2: 20
+        toolbox: {
+            show: true,
+            feature: {
+                mark: { show: true },
+                dataView: { show: true, readOnly: false },
+                restore: { show: true },
+                saveAsImage: { show: true }
+            }
         },
-        itemStyle: {
-          color: '#c23531',
-          shadowBlur: 200,
-
-        },
-
-        animationType: 'scale',
-        animationEasing: 'elasticOut',
-        animationDelay: function () {
-          return Math.random() * 200;
-        }
-      }
-    ]
-  };
-  return (
-    <ReactECharts option={option} />
-  )
+        series: [
+            {
+                name: '面积模式',
+                type: 'pie',
+                radius: [20, 100],
+                center: ['50%', '50%'],
+                roseType: 'area',
+                itemStyle: {
+                    borderRadius: 8
+                },
+                data: [
+                    { value: 40, name: 'rose 1' },
+                    { value: 38, name: 'rose 2' },
+                    { value: 32, name: 'rose 3' },
+                    { value: 30, name: 'rose 4' },
+                    { value: 28, name: 'rose 5' },
+                    { value: 26, name: 'rose 6' },
+                    { value: 22, name: 'rose 7' },
+                    { value: 18, name: 'rose 8' }
+                ]
+            }
+        ]
+    };
+    return (
+        <MyEchart options={option} id="PieEchart" />
+    )
 }

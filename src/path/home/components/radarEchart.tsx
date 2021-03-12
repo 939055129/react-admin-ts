@@ -1,12 +1,12 @@
 /*
  * @Description: Night
  * @Date: 2021-02-26 18:00:40
- * @LastEditTime: 2021-02-26 18:19:41
+ * @LastEditTime: 2021-03-12 15:39:59
  * @Version: 
  */
-import ReactECharts from 'echarts-for-react';
+import MyEchart from "@/components/myEchart"
 
-export default function BarEchart() {
+export default function RadarEchart() {
   const option = {
     backgroundColor: "#fff",
     title: {
@@ -75,6 +75,6 @@ export default function BarEchart() {
     })()
   };
   return (
-    <ReactECharts option={option} />
+    <MyEchart options={option} id="RadarEchart" />
   )
 }

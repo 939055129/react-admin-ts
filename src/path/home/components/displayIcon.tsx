@@ -4,7 +4,7 @@ import styled from "styled-components"
 /*
  * @Description: Night
  * @Date: 2021-02-25 17:46:25
- * @LastEditTime: 2021-02-26 17:40:52
+ * @LastEditTime: 2021-03-12 14:32:10
  * @Version: 
  */
 const Wrap = styled.div`
@@ -23,7 +23,11 @@ cursor:pointer;
 }
 `
 export default function DisplayIcon(props:
-  { Icon: any, children: ReactChild | string, Color: string, [props: string]: any }) {
+  {
+    Icon: FC<{
+      style: any
+    }>, children: ReactChild | string, Color: string, [props: string]: any
+  }) {
   const { Icon, children, Color, } = props
   const [backColor, setBackColor] = useState("#fff")
   const [iconColor, setIconColor] = useState(Color)

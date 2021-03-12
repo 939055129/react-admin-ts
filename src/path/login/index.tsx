@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-04 16:15:28
- * @LastEditTime: 2021-02-25 15:02:27
+ * @LastEditTime: 2021-03-12 17:35:45
  * @Version: 
  */
 
@@ -9,28 +9,35 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
-import { encodePrams } from "@/utils/uitls"
+import { setSession } from "@/utils/uitls"
 const Wrap = styled.div`
 .login-form{
   margin:0 auto;
   width:300px;
 }
 `
+interface form {
+  username: string,
+  password: string,
+  remember: boolean,
+}
 export default function Login() {
   const History = useHistory()
-  const onFinish = (values: any) => {
-    let query = encodePrams({
-      test: 132,
-      name: "TEST"
-    })
-    console.log(query)
-    window.localStorage.setItem("isLogin", "true")
+  const onFinish = (form: form) => {
+    if (form.username == "admin") {
+      setSession('userInfo', {
+        isLogin: true,
+        auth: ["admin"]
+      })
+    } else {
+      setSession('userInfo', {
+        isLogin: true,
+        auth: ["normal"]
+      })
+    }
     History.push({
       pathname: "/app",
-      state: 123,
-      search: query
     })
-    console.log('Received values of form: ', values);
   };
   return (
     <Wrap >

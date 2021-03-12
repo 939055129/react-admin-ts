@@ -1,13 +1,14 @@
 /*
  * @Description: Night
  * @Date: 2021-02-02 16:06:57
- * @LastEditTime: 2021-02-26 18:13:30
+ * @LastEditTime: 2021-03-12 16:54:40
  * @Version: 
  */
 
 // import { useLocation } from 'react-router-dom'
 // import { decodeurl } from "@/utils/uitls"
 import DisplayIcon from "./components/displayIcon"
+import CommentList from "./components/comment"
 import { useState, useEffect } from "react"
 import {
   HomeOutlined,
@@ -21,7 +22,7 @@ import PieEchart from "./components/pieEchart"
 import RadarEchart from "./components/radarEchart"
 import Wrap from "./homeCSS"
 export default function Home() {
-  const [itemList, setItemList] = useState([
+  const [itemList] = useState([
     {
       icon: HomeOutlined,
       text: "访问量",
@@ -48,7 +49,7 @@ export default function Home() {
     },
   ])
   useEffect(() => {
-    console.log(123)
+
   })
   return (
     <Wrap>
@@ -69,7 +70,11 @@ export default function Home() {
         <div className="item"><PieEchart /></div>
         <div className="item"><BarEchart /></div>
       </div>
-      <div></div>
+      <div className="footer">
+        <CommentList />
+        <div className="item">12</div>
+        <div className="item">45</div>
+      </div>
     </Wrap>
   )
 }
