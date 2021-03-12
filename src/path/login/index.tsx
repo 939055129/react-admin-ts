@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-04 16:15:28
- * @LastEditTime: 2021-03-12 17:35:45
+ * @LastEditTime: 2021-03-12 18:17:59
  * @Version: 
  */
 
@@ -67,12 +67,10 @@ export default function Login() {
           <Form.Item name="remember" valuePropName="checked" noStyle>
             <Checkbox>记住我</Checkbox>
           </Form.Item>
-
           <a className="login-form-forgot" href="avascript:void(0)">
-            忘记密码
+            账号密码随便输   <br /> 管理员账号admin 密码随便输
       </a>
         </Form.Item>
-
         <Form.Item>
           <Button type="primary" htmlType="submit" className="login-form-button">
             登录
