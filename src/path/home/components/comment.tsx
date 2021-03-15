@@ -1,10 +1,10 @@
 /*
  * @Description: Night
  * @Date: 2021-03-12 16:38:26
- * @LastEditTime: 2021-03-12 17:01:04
+ * @LastEditTime: 2021-03-15 14:00:20
  * @Version: 
  */
-import React, { FC } from "react"
+import React from "react"
 import { List, Avatar, Space } from 'antd';
 import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
 

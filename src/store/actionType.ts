@@ -1,13 +1,14 @@
 /*
  * @Description: Night
  * @Date: 2021-02-19 18:31:18
- * @LastEditTime: 2021-03-12 18:23:06
+ * @LastEditTime: 2021-03-15 16:13:23
  * @Version: 
  */
 export const ADD_NAV = 'ADD_NAV'
 export const REMOVE_NAV = 'REMOVE_NAV'
 export const CHANGE_NAV = 'CHANGE_NAV'
 export const CLEAR_NAV = 'CLEAR_NAV'
+export const SET_USERINFO = 'SET_USERINFO'
 export interface Action {
   type: string,
   [propName: string]: any
@@ -33,6 +34,12 @@ export function changeNav(pramas: any): Action {
 export function clearNav(pramas: any): Action {
   return {
     type: CLEAR_NAV,
+    pramas
+  }
+}
+export function setUserInfo(pramas: {}): Action {
+  return {
+    type: SET_USERINFO,
     pramas
   }
 }

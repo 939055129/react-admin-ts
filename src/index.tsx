@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-02 15:27:28
- * @LastEditTime: 2021-03-01 18:04:36
+ * @LastEditTime: 2021-03-15 18:15:34
  * @FilePath: \app\src\index.tsx
  */
 import React from 'react';
@@ -11,8 +11,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from "react-redux"
 import store from "./store/index"
+import mockStart from "mock/index"
+if (process.env.NODE_ENV === "development") {
+  mockStart()
+}
 ReactDOM.render(
-
   <Provider store={store}>
     <App />
   </Provider>,

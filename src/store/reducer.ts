@@ -1,14 +1,14 @@
 /*
  * @Description: Night
  * @Date: 2021-02-19 18:30:54
- * @LastEditTime: 2021-03-12 18:22:56
+ * @LastEditTime: 2021-03-15 16:23:34
  * @Version: 
  */
 import { combineReducers } from 'redux'
-import { ADD_NAV, REMOVE_NAV, CHANGE_NAV, CLEAR_NAV, Action } from "./actionType"
+import { ADD_NAV, REMOVE_NAV, CHANGE_NAV, CLEAR_NAV, SET_USERINFO, Action } from "./actionType"
 import defaultState from './state'
 //添加删除已打开页面
-function addOrDeletNav(state = defaultState.navItem, action: Action) {
+function navItem(state = defaultState.navItem, action: Action) {
   switch (action.type) {
     case ADD_NAV:
       return [...state, action.pramas]
@@ -21,7 +21,7 @@ function addOrDeletNav(state = defaultState.navItem, action: Action) {
   }
 }
 //修改当前活动页
-function changeNav(state = defaultState.active, action: Action) {
+function active(state = defaultState.active, action: Action) {
   switch (action.type) {
     case CHANGE_NAV:
       return action.pramas
@@ -29,5 +29,17 @@ function changeNav(state = defaultState.active, action: Action) {
       return state
   }
 }
+function userInfo(state = defaultState.userInfo, action: Action) {
+  switch (action.type) {
+    case SET_USERINFO:
+      return action.pramas
+    default:
+      return state
+  }
+}
 
-export default combineReducers({ navItem: addOrDeletNav, active: changeNav })
+export default combineReducers({
+  navItem: navItem,
+  active: active,
+  userInfo: userInfo
+})

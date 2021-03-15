@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-04 16:15:28
- * @LastEditTime: 2021-03-12 18:17:59
+ * @LastEditTime: 2021-03-15 17:26:15
  * @Version: 
  */
 
@@ -9,7 +9,8 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
-import { setSession } from "@/utils/uitls"
+import { setCookie } from "@/utils/uitls"
+import { login } from "@/http/api"
 const Wrap = styled.div`
 .login-form{
   margin:0 auto;
@@ -24,20 +25,23 @@ interface form {
 export default function Login() {
   const History = useHistory()
   const onFinish = (form: form) => {
-    if (form.username == "admin") {
-      setSession('userInfo', {
-        isLogin: true,
-        auth: ["admin"]
-      })
-    } else {
-      setSession('userInfo', {
-        isLogin: true,
-        auth: ["normal"]
-      })
-    }
-    History.push({
-      pathname: "/app",
+    login(form).then(res => {
+
     })
+    // if (form.username == "admin") {
+    //   setCookie('userInfo', {
+    //     isLogin: true,
+    //     auth: ["admin"]
+    //   })
+    // } else {
+    //   setCookie('userInfo', {
+    //     isLogin: true,
+    //     auth: ["normal"]
+    //   })
+    // }
+    // History.push({
+    //   pathname: "/app",
+    // })
   };
   return (
     <Wrap >

@@ -1,17 +1,16 @@
 /*
  * @Description: Night
  * @Date: 2021-02-19 14:37:01
- * @LastEditTime: 2021-03-12 18:00:48
+ * @LastEditTime: 2021-03-15 18:32:12
  * @Version: 
  */
 import { Menu } from 'antd';
-import { router, store } from "@/utils/interface"
-import { useSelector, useDispatch } from 'react-redux'
-import { addNav, changeNav } from "@/store/actionType"
-import routers from "@/router"
 import { useHistory } from "react-router-dom"
 import styled from 'styled-components';
-import { getSession } from "@/utils/uitls"
+import { useSelector, useDispatch } from 'react-redux'
+import { router, store, userInfo } from "@/utils/interface"
+import { addNav, changeNav } from "@/store/actionType"
+import routers from "@/router"
 const Wrap = styled.div`
 height:100%;
 width:100%;
@@ -21,12 +20,9 @@ const { SubMenu } = Menu;
 type menu = Pick<router, "name" | "path">
 export default function Nav(props: any) {
   const navItem: menu[] = useSelector((state: store) => state.navItem)
+  let userInfo: userInfo = useSelector((state: store) => state.userInfo)
   const History = useHistory()
   const Dispatch = useDispatch()
-  let userInfo: {
-    isLogin: boolean,
-    auth: [],
-  } = JSON.parse(getSession("userInfo"))
   let addNavItem = (value: menu, path: string) => {
     /**
   * @description: 判断是否存在如果存在便不添加menuItem

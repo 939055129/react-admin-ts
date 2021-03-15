@@ -1,17 +1,17 @@
 /*
  * @Description: Night
  * @Date: 2021-02-19 15:07:55
- * @LastEditTime: 2021-03-12 18:04:17
+ * @LastEditTime: 2021-03-15 18:33:52
  * @Version: 
  */
 
-import { lazy, Suspense, useState, } from 'react';
+import { lazy, Suspense, } from 'react';
 import { Spin } from 'antd';
 import { Switch, Redirect } from 'react-router-dom'
-import NpRoute from "./npRoute"
+import { useSelector } from 'react-redux'
+import NpRoute from "@/components/npRoute"
 import styled from "styled-components"
-import { router } from "@/utils/interface"
-import { getSession } from "@/utils/uitls"
+import { router, userInfo, store } from "@/utils/interface"
 import routers from "@/router"
 import NavTip from "./navTip"
 import NavBar from "./navBar"
@@ -28,14 +28,9 @@ height:100%;
  overflow-y:scroll;
 }
 `
-
-
 export default function NavMenu(props: any) {
-  let userInfo: {
-    isLogin: boolean,
-    auth: [],
-  } = JSON.parse(getSession("userInfo"))
-  let isLogin = userInfo.isLogin
+  let userInfo: userInfo = useSelector((state: store) => state.userInfo)
+  let isLogin = userInfo.id
   let renderMenu = (routers: router[], lastPath: string = ""): any => {
     return routers.map((item) => {
       let path = lastPath + item.path
@@ -68,6 +63,8 @@ export default function NavMenu(props: any) {
             {routers.adminRouter.map((item) => {
               if (userInfo.auth.some(value => value === "admin")) {
                 return <NpRoute path={item.path} exact key={item.name} component={lazy(item.component)} />
+              } else {
+                return ""
               }
             })}
             <NpRoute path="*" >

@@ -2,10 +2,11 @@
 /*
  * @Description: Night
  * @Date: 2021-02-18 15:53:33
- * @LastEditTime: 2021-03-12 17:41:46
+ * @LastEditTime: 2021-03-15 15:43:23
  * @Version: 
  */
 // url编码
+import Cookies from "js-cookie"
 export function encodePrams(prams: any): string {
   let url = ""
   for (const key in prams) {
@@ -27,8 +28,8 @@ export function decodePrams(prams: string): object {
   return query
 }
 
-export function getSession(params: string) {
-  let res = window.sessionStorage.getItem(params)
+export function getSession(key: string) {
+  let res = window.sessionStorage.getItem(key)
   if (res) {
     return res
   } else {
@@ -38,4 +39,18 @@ export function getSession(params: string) {
 
 export function setSession(key: string, params: any) {
   window.sessionStorage.setItem(key, JSON.stringify(params))
+}
+
+export function setCookie(key: string, value: any, expiresTime: number = 60 * 60 * 24) {
+  let seconds = expiresTime
+  let expires = new Date(new Date() as any * 1 + seconds * 1000)
+  return Cookies.set(key, value, { expires: expires })
+}
+
+export function getCookie(key: string) {
+  return Cookies.get(key)
+}
+
+export function reomveCookie(key: string) {
+  return Cookies.remove(key)
 }

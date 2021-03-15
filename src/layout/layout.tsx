@@ -9,9 +9,9 @@
 // import { decodeurl } from "@/utils/uitls"
 
 import styled from "styled-components"
-import Header from "@/components/header"
-import SideBar from "@/components/sideBar"
-import Content from "@/components/content"
+import Header from "./header"
+import SideBar from "./sideBar"
+import Content from "./content"
 import { Row, Col } from 'antd';
 
 const Wrap = styled.div`
