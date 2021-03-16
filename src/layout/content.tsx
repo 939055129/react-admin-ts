@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-19 15:07:55
- * @LastEditTime: 2021-03-15 18:33:52
+ * @LastEditTime: 2021-03-16 15:54:42
  * @Version: 
  */
 
@@ -30,7 +30,7 @@ height:100%;
 `
 export default function NavMenu(props: any) {
   let userInfo: userInfo = useSelector((state: store) => state.userInfo)
-  let isLogin = userInfo.id
+  let isLogin = userInfo.name
   let renderMenu = (routers: router[], lastPath: string = ""): any => {
     return routers.map((item) => {
       let path = lastPath + item.path

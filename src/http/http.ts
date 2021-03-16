@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-03-15 17:03:42
- * @LastEditTime: 2021-03-16 11:25:38
+ * @LastEditTime: 2021-03-16 14:59:12
  * @Version: 
  */
 import axios from "axios"
@@ -40,7 +40,7 @@ request.interceptors.response.use(
         return Promise.resolve(res.data)
       } else {
         message.error(res.data.msg)
-        return Promise.reject(res.data)
+        return Promise.resolve(res.data)
       }
     } else {
       return Promise.reject(res.data)

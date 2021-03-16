@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-03-15 18:15:44
- * @LastEditTime: 2021-03-16 12:07:41
+ * @LastEditTime: 2021-03-16 14:57:32
  * @Version: 
  */
 import Mock from "mockjs"
@@ -38,7 +38,7 @@ const user = [
       } else {
         return {
           status: 0,
-          data: {},
+          data: "",
           msg: "账号密码错误"
         }
       }

@@ -1,36 +1,43 @@
 /*
  * @Description: Night
  * @Date: 2021-02-04 16:15:28
- * @LastEditTime: 2021-03-16 14:13:33
+ * @LastEditTime: 2021-03-16 15:24:12
  * @Version: 
  */
 
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
-import { LOGIN } from "@/store/asyncAction"
 import { useDispatch } from "react-redux"
+import { LOGIN } from "@/store/asyncAction"
+import backImg from "@/assets/img/login.jpg"
+
 const Wrap = styled.div`
+ background-image:url(${backImg});
+ height:100%;
+background-size:cover;
 .login-form{
   margin:0 auto;
   width:300px;
+  padding-top:300px;
+  text-align:center;
 }
 `
 interface form {
   username: string,
   password: string,
-  remember: boolean,
 }
 export default function Login() {
   const History = useHistory()
-  const Dispatch = useDispatch()
+  const Dispatch: ReturnType<typeof LOGIN> = useDispatch()
   const onFinish = async (form: form) => {
-    Dispatch(LOGIN(form)).then((res:any)=>{})
-    
-    // History.push({
-    //   pathname: "/app"
-    // })
+    let res: boolean = await Dispatch(LOGIN(form))
+    if (res) {
+      History.push({
+        pathname: "/app"
+      })
+    }
   };
   return (
     <Wrap >
@@ -57,11 +64,8 @@ export default function Login() {
           />
         </Form.Item>
         <Form.Item>
-          <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>记住我</Checkbox>
-          </Form.Item>
           <a className="login-form-forgot" href="avascript:void(0)">
-            账号密码随便输   <br /> 管理员账号admin 密码随便输
+            游客账号night 游客密码night   <br /> 管理员账号admin 密码admin
       </a>
         </Form.Item>
         <Form.Item>

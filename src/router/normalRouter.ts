@@ -246,10 +246,10 @@ const normalRoter: router[] = [
     icon: ExclamationCircleOutlined,
     children: [
       {
-        name: "401",
-        path: "/401",
+        name: "403",
+        path: "/403",
         icon: "",
-        component: () => import("@/path/error/401"),
+        component: () => import("@/path/error/403"),
       },
       {
         name: "404",

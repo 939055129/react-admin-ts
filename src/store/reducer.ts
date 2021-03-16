@@ -1,11 +1,11 @@
 /*
  * @Description: Night
  * @Date: 2021-02-19 18:30:54
- * @LastEditTime: 2021-03-16 10:14:53
+ * @LastEditTime: 2021-03-16 15:42:26
  * @Version: 
  */
 import { combineReducers } from 'redux'
-import { ADD_NAV, REMOVE_NAV, CHANGE_NAV, CLEAR_NAV, SET_USERINFO, Action } from "./actionType"
+import { ADD_NAV, REMOVE_NAV, CHANGE_NAV, SET_USERINFO, Action } from "./actionType"
 import defaultState from './state'
 //添加删除已打开页面
 function navItem(state = defaultState.navItem, action: Action) {
@@ -14,8 +14,6 @@ function navItem(state = defaultState.navItem, action: Action) {
       return [...state, action.pramas]
     case REMOVE_NAV:
       return state.filter((item) => { return item.name !== action.pramas.name })
-    case CLEAR_NAV:
-      return []
     default:
       return state
   }

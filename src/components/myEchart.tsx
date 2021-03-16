@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-03-12 09:57:19
- * @LastEditTime: 2021-03-12 15:03:21
+ * @LastEditTime: 2021-03-16 17:07:23
  * @Version: 
  */
 import { useEffect, memo } from 'react';
@@ -28,7 +28,7 @@ function MyEchart(props: { id: string, options: {} }) {
     return () => {
       window.removeEventListener("resize", init)
     }
-  }, [options])
+  }, [id, options])
   return (
     <div id={id} style={{ width: '100%', height: '100%' }}></div>
   )

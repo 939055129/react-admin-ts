@@ -1,16 +1,17 @@
 /*
  * @Description: Night
  * @Date: 2021-02-03 11:02:22
- * @LastEditTime: 2021-03-12 18:23:20
+ * @LastEditTime: 2021-03-16 16:48:58
  * @Version: 
  */
+
+import styled from 'styled-components'
+import { Popover, Avatar } from 'antd';
+import { useSelector } from "react-redux"
+import { store, userInfo } from "@/utils/interface"
+import { reomveCookie } from "@/utils/uitls"
 import backImg from "../assets/img/header.jpg"
 import logo from "../logo.svg"
-import styled from 'styled-components'
-import { useHistory } from 'react-router-dom'
-import { Popover } from 'antd';
-import { Avatar, } from 'antd';
-import { clearNav } from "@/store/actionType"
 const Wrap = styled.div`
 box-sizing:border-box;
 background-image:url(${backImg});
@@ -38,12 +39,10 @@ a{
 }
 `
 export default function Header() {
-  const History = useHistory()
+  const userInfo: userInfo = useSelector((state: store) => state.userInfo)
   const goOut = () => {
-
-    History.push({
-      pathname: "/login"
-    })
+    reomveCookie("userInfo")
+    window.location.reload()
   }
   return (
     <Wrap>
@@ -51,13 +50,13 @@ export default function Header() {
         <img src={logo} style={{ width: 100 }} alt="logo"></img>
       </div>
       <div className="Avatar">
-        <Popover content={(<a onClick={goOut}>退出登录</a>)}>
+        <Popover content={(<a onClick={goOut} href="/#">退出登录</a>)}>
           <Avatar
             size="large"
-            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+            src={userInfo.avatar}
           />
         </Popover>
-        MRliu
+        {userInfo.name}
       </div>
     </Wrap>
   )

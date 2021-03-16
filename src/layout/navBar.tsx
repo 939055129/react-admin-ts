@@ -27,13 +27,6 @@ export default function NavBar() {
   const active: string = useSelector((state: store) => state.active)//当前页
   const navItem: menu[] = useSelector((state: store) => state.navItem)//访问过的页面
   const Dispatch = useDispatch()
-  /**
-   * @description: 关闭tag标签
-   * @event: 
-   * @param {any} e
-   * @param {router} pramas
-   * @return {*}
-   */
   function preventDefault(e: any, pramas: menu) {
     e.preventDefault();
     Dispatch(removeNav(pramas))

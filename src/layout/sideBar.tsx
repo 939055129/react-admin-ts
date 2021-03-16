@@ -1,45 +1,24 @@
 /*
  * @Description: Night
  * @Date: 2021-02-19 14:37:01
- * @LastEditTime: 2021-03-15 18:32:12
+ * @LastEditTime: 2021-03-16 17:03:52
  * @Version: 
  */
 import { Menu } from 'antd';
-import { useHistory } from "react-router-dom"
 import styled from 'styled-components';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, } from 'react-redux'
 import { router, store, userInfo } from "@/utils/interface"
-import { addNav, changeNav } from "@/store/actionType"
 import routers from "@/router"
+import { useAddNavItem } from "@/hooks"
 const Wrap = styled.div`
 height:100%;
 width:100%;
 overflow-y:scroll;
 `
 const { SubMenu } = Menu;
-type menu = Pick<router, "name" | "path">
 export default function Nav(props: any) {
-  const navItem: menu[] = useSelector((state: store) => state.navItem)
+  const addNavItem=useAddNavItem()
   let userInfo: userInfo = useSelector((state: store) => state.userInfo)
-  const History = useHistory()
-  const Dispatch = useDispatch()
-  let addNavItem = (value: menu, path: string) => {
-    /**
-  * @description: 判断是否存在如果存在便不添加menuItem
-  * @event: 
-  * @param {*} navItem
-  * @return {*}
-  */
-    if (navItem.some((item: menu) => { return item.name === value.name })) {
-      Dispatch(changeNav(value.name))
-    } else {
-      let menuItem = JSON.parse(JSON.stringify(value))
-      menuItem.path = path
-      Dispatch(addNav(menuItem))
-      Dispatch(changeNav(menuItem.name))
-    }
-    History.push(path)
-  }
   let renderMenu = (routers: router[], lastPath: string = ""): any => {
     return routers.map((item) => {
       let path = lastPath + item.path

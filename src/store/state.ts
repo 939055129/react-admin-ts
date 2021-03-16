@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-20 14:32:30
- * @LastEditTime: 2021-03-15 16:20:13
+ * @LastEditTime: 2021-03-16 16:23:55
  * @Version: 
  */
 import { store, } from "@/utils/interface"
@@ -14,7 +14,8 @@ const state: store = {
     name: "",
     id: 0,
     avatar: "",
-    auth: []
+    auth: [],
+    token: ""
   }
 }
 export default state
