@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-04 16:15:28
- * @LastEditTime: 2021-03-15 17:26:15
+ * @LastEditTime: 2021-03-16 14:13:33
  * @Version: 
  */
 
@@ -9,8 +9,8 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
-import { setCookie } from "@/utils/uitls"
-import { login } from "@/http/api"
+import { LOGIN } from "@/store/asyncAction"
+import { useDispatch } from "react-redux"
 const Wrap = styled.div`
 .login-form{
   margin:0 auto;
@@ -24,23 +24,12 @@ interface form {
 }
 export default function Login() {
   const History = useHistory()
-  const onFinish = (form: form) => {
-    login(form).then(res => {
-
-    })
-    // if (form.username == "admin") {
-    //   setCookie('userInfo', {
-    //     isLogin: true,
-    //     auth: ["admin"]
-    //   })
-    // } else {
-    //   setCookie('userInfo', {
-    //     isLogin: true,
-    //     auth: ["normal"]
-    //   })
-    // }
+  const Dispatch = useDispatch()
+  const onFinish = async (form: form) => {
+    Dispatch(LOGIN(form)).then((res:any)=>{})
+    
     // History.push({
-    //   pathname: "/app",
+    //   pathname: "/app"
     // })
   };
   return (

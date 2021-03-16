@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-02-19 18:30:54
- * @LastEditTime: 2021-03-15 16:23:34
+ * @LastEditTime: 2021-03-16 10:14:53
  * @Version: 
  */
 import { combineReducers } from 'redux'
@@ -39,7 +39,7 @@ function userInfo(state = defaultState.userInfo, action: Action) {
 }
 
 export default combineReducers({
-  navItem: navItem,
-  active: active,
-  userInfo: userInfo
+  navItem,
+  active,
+  userInfo
 })

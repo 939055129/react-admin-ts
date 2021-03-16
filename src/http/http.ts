@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-03-15 17:03:42
- * @LastEditTime: 2021-03-15 18:14:01
+ * @LastEditTime: 2021-03-16 11:25:38
  * @Version: 
  */
 import axios from "axios"
@@ -21,7 +21,6 @@ const errorTip = (code: number) => {
 let request = axios.create(
   {
     timeout: 6000,
-    baseURL: '/api',
     headers: {
       "Content-Type": "application/json;charset=UTF-8",
       // "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
@@ -36,13 +35,12 @@ request.interceptors.request.use(config => {
 });
 request.interceptors.response.use(
   res => {
-    console.log(res)
     if (res.status === 200) {
       if (res.data.status === 1) {
         return Promise.resolve(res.data)
       } else {
         message.error(res.data.msg)
-        return Promise.resolve(res.data)
+        return Promise.reject(res.data)
       }
     } else {
       return Promise.reject(res.data)

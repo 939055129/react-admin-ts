@@ -1,7 +1,7 @@
 /*
  * @Description: Night
  * @Date: 2021-03-15 18:15:44
- * @LastEditTime: 2021-03-15 18:18:52
+ * @LastEditTime: 2021-03-16 12:07:41
  * @Version: 
  */
 import Mock from "mockjs"
@@ -15,10 +15,11 @@ const user = [
         return {
           status: 1,
           data: {
-            "name": Mock.Random.cname,
-            "id": Mock.Random.id,
+            "name": Mock.Random.cname(),
+            "id": Mock.Random.id(),
             "avatar": Mock.Random.image('200x100', '#4A7BF7', 'admin'),
-            "auth": ['admin']
+            "auth": ['admin'],
+            "token": new Date().toISOString()
           },
           msg: "登录成功"
         }
@@ -26,10 +27,11 @@ const user = [
         return {
           status: 1,
           data: {
-            "name": Mock.Random.cname,
-            "id": Mock.Random.id,
+            "name": Mock.Random.cname(),
+            "id": Mock.Random.id(),
             "avatar": Mock.Random.image('200x100', '#4A7BF7', 'normal'),
-            "auth": ['normal']
+            "auth": ['normal'],
+            "token": new Date().toISOString()
           },
           msg: "登录成功"
         }
